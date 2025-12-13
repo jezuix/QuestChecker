@@ -1,7 +1,7 @@
 ## Interface: 100200
 ## Title: QuestChecker
 ## Notes: Verifica o status de quests específicas
-## Author: SeuNome
+## Author: Jezuix
 ## Version: 1.2.0
 ## SavedVariables: QuestCheckerDB
 ## OptionalDeps: Ace3

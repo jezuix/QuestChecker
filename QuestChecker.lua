@@ -10,7 +10,7 @@ G_QuestCheckerColors = {
     RED = "|cFFFF0000",
     YELLOW = "|cFFFFFF00",
     BLUE = "|cFF0070DD",
-    ORANGE = "|cFFFF8000",
+    ORANGE = "|cFFFF9900",
     PURPLE = "|cFFA335EE",
     GRAY = "|cFF808080",
     WHITE = "|cFFFFFFFF",
@@ -94,7 +94,7 @@ end
 
 -- Muda o idioma do addon
 local function SetLocale(newLocale)
-    if QuestCheckerLocale[newLocale] then
+    if QuestCheckerLocale and QuestCheckerLocale[newLocale] then
         QuestCheckerDB.locale = newLocale
         addon:LoadLocale()
         print(string.format(L.LOCALE_CHANGED, newLocale))

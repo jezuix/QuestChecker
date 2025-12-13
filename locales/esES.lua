@@ -41,7 +41,7 @@ QuestCheckerLocale["esES"] = {
     HELP_HEADER = "{GREEN}=== Ayuda de QuestChecker ===",
 
     -- Encabezados específicos
-    CHECK_NAMED_HEADER = "Verificando misiones %s:",
+    CHECK_NAMED_HEADER = "{ORANGE}Verificando misiones %s:",
     LIST_CHARACTER_HEADER = "Misiones del Personaje (%s):",
     LIST_GLOBAL_HEADER = "Misiones Globales:",
 
@@ -54,9 +54,9 @@ QuestCheckerLocale["esES"] = {
 
     -- Mensajes de error/éxito
     NO_QUESTS_IN_LIST = "{ORANGE}No hay misiones en la lista. Usa /qc add [ID] para añadir una.|r",
-    NO_QUESTS_IN_NAMED_LIST = "No hay misiones en la lista %s.",
-    NO_CHARACTER_QUESTS = "No tienes misiones específicas del personaje.",
-    NO_GLOBAL_QUESTS = "No hay misiones globales.",
+    NO_QUESTS_IN_NAMED_LIST = "{ORANGE}No hay misiones en la lista %s.",
+    NO_CHARACTER_QUESTS = "{ORANGE}No tienes misiones específicas del personaje.",
+    NO_GLOBAL_QUESTS = "{ORANGE}No hay misiones globales.",
 
     QUEST_ADDED = "{GREEN}Misión #%d añadida a la lista.|r",
     QUEST_ADDED_CHARACTER = "Misión {YELLOW}%d (%s)|r añadida a tu lista del personaje.",

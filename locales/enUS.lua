@@ -41,7 +41,7 @@ QuestCheckerLocale["enUS"] = {
     HELP_HEADER = "{GREEN}=== QuestChecker Help ===",
 
     -- List-specific headers
-    CHECK_NAMED_HEADER = "Checking %s quests:",
+    CHECK_NAMED_HEADER = "{ORANGE}Checking %s quests:",
     LIST_CHARACTER_HEADER = "Character Quests (%s):",
     LIST_GLOBAL_HEADER = "Global Quests:",
 
@@ -54,9 +54,9 @@ QuestCheckerLocale["enUS"] = {
 
     -- Success/error messages
     NO_QUESTS_IN_LIST = "{ORANGE}No quests in the list. Use /qc add [ID] to add one.|r",
-    NO_QUESTS_IN_NAMED_LIST = "No quests in the %s list.",
-    NO_CHARACTER_QUESTS = "You have no character-specific quests.",
-    NO_GLOBAL_QUESTS = "There are no global quests.",
+    NO_QUESTS_IN_NAMED_LIST = "{ORANGE}No quests in the %s list.",
+    NO_CHARACTER_QUESTS = "{ORANGE}You have no character-specific quests.",
+    NO_GLOBAL_QUESTS = "{ORANGE}There are no global quests.",
 
     QUEST_ADDED = "{GREEN}Quest #%d added to the list.|r",
     QUEST_ADDED_CHARACTER = "Quest {YELLOW}%d (%s)|r added to your character quest list.",

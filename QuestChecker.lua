@@ -68,6 +68,13 @@ function addon:LoadLocale()
     end
     
     L = QuestCheckerLocale[locale]
+    
+    -- Garante que todas as chaves existam (fallback para enUS)
+    for key, value in pairs(QuestCheckerLocale["enUS"]) do
+        if not L[key] then
+            L[key] = value
+        end
+    end
 
     -- Processa TODAS as strings para substituir placeholders de cor
     for key, value in pairs(L) do
@@ -83,23 +90,35 @@ function addon:LoadLocale()
                          :gsub("{WHITE}", G_QuestCheckerColors.WHITE)
         end
     end
-    
-    -- Garante que todas as chaves existam (fallback para enUS)
-    for key, value in pairs(QuestCheckerLocale["enUS"]) do
-        if not L[key] then
-            L[key] = value
-        end
-    end
 end
 
 -- Muda o idioma do addon
 local function SetLocale(newLocale)
+    newLocale = normalizeLocale(newLocale)
+
     if QuestCheckerLocale and QuestCheckerLocale[newLocale] then
         QuestCheckerDB.locale = newLocale
         addon:LoadLocale()
         print(string.format(L.LOCALE_CHANGED, newLocale))
     else
         print(string.format(L.LOCALE_NOT_AVAILABLE, newLocale))
+    end
+end
+
+function normalizeLocale(locale)
+    if (locale) then
+        locale = string.lower(locale)
+
+        if #locale < 2 then
+            return string.upper(locale)
+        end
+
+        local beginStr = string.sub(locale, 1, -3)
+        local endStr = string.sub(locale, -2)
+        
+        return beginStr .. string.upper(endStr)
+    else 
+        return locale
     end
 end
 
@@ -279,7 +298,7 @@ local function HandleConfigCommand(args)
         QuestCheckerDB.chatOutput = false
         print(L.CONFIG_CHAT_DISABLED)
     elseif command:sub(1, 7) == "locale " then
-        local locale = command:sub(8):upper()
+        local locale = command:sub(8)
         SetLocale(locale)
     else
         ShowConfig()
@@ -320,7 +339,7 @@ local function HandleCommand(input)
             ShowConfig()
         end
     elseif command == "locale" and args[2] then
-        SetLocale(args[2]:upper())
+        SetLocale(args[2])
     elseif command == "help" then
         print(L.HELP_HEADER)
         print(L.HELP_CHECK)

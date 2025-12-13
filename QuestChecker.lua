@@ -1,10 +1,10 @@
--- QuestChecker Addon com Localização
--- Comando: /qc ou /questcheck
+-- QuestChecker Addon with Localization
+-- Command: /qc or /questcheck
 
 local addonName, addon = ...
 local L = {}
 
--- Tabela GLOBAL de cores (será usada por todos os locales)
+-- GLOBAL color table (will be used by all locales)
 G_QuestCheckerColors = {
     GREEN = "|cFF00FF00",
     RED = "|cFFFF0000",
@@ -16,38 +16,38 @@ G_QuestCheckerColors = {
     WHITE = "|cFFFFFFFF",
 }
 
--- Configurações padrão
+-- Default settings
 local DEFAULT_QUEST_LIST = {
-    85460, 
-    82706, 
-    91173, 
-    82679, 
+    85460,
+    82706,
+    91173,
+    82679,
     82449
 }
 
--- Banco de dados do addon
+-- Addon database
 QuestCheckerDB = QuestCheckerDB or {
     questList = {},
     showQuestDetails = true,
     chatOutput = true,
-    locale = GetLocale(), -- Idioma padrão do cliente
+    locale = GetLocale() -- Client default language
 }
 
--- Inicialização do addon
+-- Addon initialization
 local function InitializeAddon()
-    -- Carrega localização
+    -- Load localization
     addon:LoadLocale()
-    
-    -- Se a lista estiver vazia, usar a padrão
+
+    -- If list is empty, use default
     if #QuestCheckerDB.questList == 0 then
         QuestCheckerDB.questList = DEFAULT_QUEST_LIST
     end
-    
-    -- Atualiza locale se necessário
+
+    -- Update locale if needed
     if not QuestCheckerDB.locale then
         QuestCheckerDB.locale = GetLocale()
     end
-    
+
     print(L.ADDON_LOADED)
     print(L.COMMANDS_AVAILABLE_HEADER)
     print(L.COMMAND_CHECK)
@@ -57,42 +57,42 @@ local function InitializeAddon()
     print(L.COMMAND_CONFIG)
 end
 
--- Carrega o locale apropriado
+-- Load appropriate locale
 function addon:LoadLocale()
     local locale = QuestCheckerDB.locale or GetLocale()
-    
-    -- Fallback para enUS se o locale não existir
+
+    -- Fallback to enUS if locale doesn't exist
     if not QuestCheckerLocale[locale] then
         locale = "enUS"
         QuestCheckerDB.locale = locale
     end
-    
+
     L = QuestCheckerLocale[locale]
-    
-    -- Garante que todas as chaves existam (fallback para enUS)
+
+    -- Ensure all keys exist (fallback to enUS)
     for key, value in pairs(QuestCheckerLocale["enUS"]) do
         if not L[key] then
             L[key] = value
         end
     end
 
-    -- Processa TODAS as strings para substituir placeholders de cor
+    -- Process ALL strings to replace color placeholders
     for key, value in pairs(L) do
         if type(value) == "string" then
-            -- Substitui {GREEN}, {RED}, etc., pelos valores reais das cores
+            -- Replace color tag with actual color values
             L[key] = value:gsub("{GREEN}", G_QuestCheckerColors.GREEN)
-                         :gsub("{RED}", G_QuestCheckerColors.RED)
-                         :gsub("{YELLOW}", G_QuestCheckerColors.YELLOW)
-                         :gsub("{BLUE}", G_QuestCheckerColors.BLUE)
-                         :gsub("{ORANGE}", G_QuestCheckerColors.ORANGE)
-                         :gsub("{PURPLE}", G_QuestCheckerColors.PURPLE)
-                         :gsub("{GRAY}", G_QuestCheckerColors.GRAY)
-                         :gsub("{WHITE}", G_QuestCheckerColors.WHITE)
+                :gsub("{RED}", G_QuestCheckerColors.RED)
+                :gsub("{YELLOW}", G_QuestCheckerColors.YELLOW)
+                :gsub("{BLUE}", G_QuestCheckerColors.BLUE)
+                :gsub("{ORANGE}", G_QuestCheckerColors.ORANGE)
+                :gsub("{PURPLE}", G_QuestCheckerColors.PURPLE)
+                :gsub("{GRAY}", G_QuestCheckerColors.GRAY)
+                :gsub("{WHITE}", G_QuestCheckerColors.WHITE)
         end
     end
 end
 
--- Muda o idioma do addon
+-- Change addon language
 local function SetLocale(newLocale)
     newLocale = normalizeLocale(newLocale)
 
@@ -115,36 +115,36 @@ function normalizeLocale(locale)
 
         local beginStr = string.sub(locale, 1, -3)
         local endStr = string.sub(locale, -2)
-        
+
         return beginStr .. string.upper(endStr)
-    else 
+    else
         return locale
     end
 end
 
--- Verifica se uma quest está completa
+-- Check if a quest is complete
 local function IsQuestCompleted(questID)
     if C_QuestLog then
         return C_QuestLog.IsQuestFlaggedCompleted(questID)
     else
-        -- Fallback para versões mais antigas
+        -- Fallback for older versions
         return IsQuestFlaggedCompleted(questID)
     end
 end
 
--- Obtém o nome da quest
+-- Get quest name
 local function GetQuestName(questID)
     local questName = C_QuestLog.GetTitleForQuestID(questID)
     return questName or string.format(L.QUEST_UNKNOWN, questID)
 end
 
--- Mostra o status de uma quest específica
+-- Show status of a specific quest
 local function ShowQuestStatus(questID)
     local questName = GetQuestName(questID)
     local isCompleted = IsQuestCompleted(questID)
-    
+
     local statusText, color
-    
+
     if isCompleted then
         statusText = L.STATUS_COMPLETE
         color = L.COLOR_GREEN
@@ -152,87 +152,87 @@ local function ShowQuestStatus(questID)
         statusText = L.STATUS_INCOMPLETE
         color = L.COLOR_RED
     end
-    
-    -- Formata a mensagem
+
+    -- Format message
     local message
     if QuestCheckerDB.showQuestDetails then
         message = string.format(L.QUEST_STATUS_DETAILED, questName, questID, color, statusText)
     else
         message = string.format(L.QUEST_STATUS_SIMPLE, questName, color, statusText)
     end
-    
-    -- Mostra no chat
+
+    -- Show in chat
     if QuestCheckerDB.chatOutput then
         print(message)
     end
-    
+
     return message
 end
 
--- Verifica todas as quests na lista
+-- Check all quests in the list
 local function CheckAllQuests()
     print(L.CHECK_HEADER)
-    
+
     if #QuestCheckerDB.questList == 0 then
         print(L.NO_QUESTS_IN_LIST)
         return
     end
-    
+
     local completedCount = 0
     local totalCount = 0
-    
+
     for _, questID in ipairs(QuestCheckerDB.questList) do
         local questName = GetQuestName(questID)
         local isCompleted = IsQuestCompleted(questID)
-        
+
         if isCompleted then
             completedCount = completedCount + 1
             print(string.format(L.QUEST_COMPLETE_FORMAT, questName, questID))
         else
             print(string.format(L.QUEST_INCOMPLETE_FORMAT, questName, questID))
         end
-        
+
         totalCount = totalCount + 1
     end
-    
+
     print(string.format(L.PROGRESS_FORMAT, completedCount, totalCount))
 end
 
--- Adiciona uma quest à lista
+-- Add a quest to the list
 local function AddQuest(questID)
     questID = tonumber(questID)
-    
+
     if not questID then
         print(L.ERROR_INVALID_QUEST_ID)
         return
     end
-    
-    -- Verifica se já existe
+
+    -- Check if already exists
     for _, existingID in ipairs(QuestCheckerDB.questList) do
         if existingID == questID then
             print(string.format(L.QUEST_ALREADY_IN_LIST, questID))
             return
         end
     end
-    
-    -- Adiciona à lista
+
+    -- Add to list
     table.insert(QuestCheckerDB.questList, questID)
     print(string.format(L.QUEST_ADDED, questID))
-    
-    -- Mostra o status imediatamente
+
+    -- Show status immediately
     ShowQuestStatus(questID)
 end
 
--- Remove uma quest da lista
+-- Remove a quest from the list
 local function RemoveQuest(questID)
     questID = tonumber(questID)
-    
+
     if not questID then
         print(L.ERROR_INVALID_QUEST_ID)
         return
     end
-    
-    -- Procura e remove
+
+    -- Search and remove
     for i, existingID in ipairs(QuestCheckerDB.questList) do
         if existingID == questID then
             table.remove(QuestCheckerDB.questList, i)
@@ -240,17 +240,17 @@ local function RemoveQuest(questID)
             return
         end
     end
-    
+
     print(string.format(L.QUEST_NOT_FOUND, questID))
 end
 
--- Lista todas as quests
+-- List all quests
 local function ListQuests()
     if #QuestCheckerDB.questList == 0 then
         print(L.NO_QUESTS_IN_LIST)
         return
     end
-    
+
     print(L.LIST_HEADER)
     for _, questID in ipairs(QuestCheckerDB.questList) do
         local questName = GetQuestName(questID)
@@ -259,32 +259,32 @@ local function ListQuests()
     end
 end
 
--- Interface de configuração
+-- Configuration interface
 local function ShowConfig()
     print(L.CONFIG_HEADER)
     print(string.format(L.CONFIG_DETAILS, QuestCheckerDB.showQuestDetails and L.STATUS_ENABLED or L.STATUS_DISABLED))
     print(string.format(L.CONFIG_CHAT, QuestCheckerDB.chatOutput and L.STATUS_ENABLED or L.STATUS_DISABLED))
     print(string.format(L.CONFIG_QUESTS_COUNT, #QuestCheckerDB.questList))
     print(string.format(L.CONFIG_LOCALE, QuestCheckerDB.locale))
-    
-    -- Mostra locales disponíveis
+
+    -- Show available locales
     print(L.CONFIG_AVAILABLE_LOCALES)
     for localeCode, localeData in pairs(QuestCheckerLocale) do
         if localeData.LOCALE_NAME then
             print(string.format("  |cFFFFFF00%s|r - %s", localeCode, localeData.LOCALE_NAME))
         end
     end
-    
+
     print(L.CONFIG_COMMANDS_HEADER)
     print(L.CONFIG_DETAILS_CMD)
     print(L.CONFIG_CHAT_CMD)
     print(L.CONFIG_LOCALE_CMD)
 end
 
--- Manipula comandos de configuração
+-- Handle configuration commands
 local function HandleConfigCommand(args)
     local command = args and args:lower()
-    
+
     if command == "details on" then
         QuestCheckerDB.showQuestDetails = true
         print(L.CONFIG_DETAILS_ENABLED)
@@ -305,23 +305,23 @@ local function HandleConfigCommand(args)
     end
 end
 
--- Limpa toda a lista de quests
+-- Clear entire quest list
 local function ClearQuestList()
     QuestCheckerDB.questList = {}
     print(L.QUEST_LIST_CLEARED)
 end
 
--- Handler principal de comandos
+-- Main command handler
 local function HandleCommand(input)
     local args = {}
-    
-    -- Divide os argumentos
+
+    -- Split arguments
     for arg in input:gmatch("%S+") do
         table.insert(args, arg)
     end
-    
+
     local command = args[1] and args[1]:lower() or ""
-    
+
     if command == "" or command == "check" then
         CheckAllQuests()
     elseif command == "add" and args[2] then
@@ -351,7 +351,7 @@ local function HandleCommand(input)
         print(L.HELP_LOCALE)
         print(L.HELP_HELP)
     else
-        -- Se for um número, verifica apenas essa quest
+        -- If it's a number, check only that quest
         local questID = tonumber(command)
         if questID then
             ShowQuestStatus(questID)
@@ -361,12 +361,12 @@ local function HandleCommand(input)
     end
 end
 
--- Registra os comandos no chat
+-- Register chat commands
 SLASH_QUESTCHECKER1 = "/questcheck"
 SLASH_QUESTCHECKER2 = "/qc"
 SlashCmdList["QUESTCHECKER"] = HandleCommand
 
--- Eventos
+-- Events
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", function(self, event, arg1)
@@ -376,7 +376,7 @@ frame:SetScript("OnEvent", function(self, event, arg1)
     end
 end)
 
--- Função global para uso por outros addons
+-- Global function for use by other addons
 _G.QuestChecker = {
     CheckQuest = ShowQuestStatus,
     AddQuest = AddQuest,

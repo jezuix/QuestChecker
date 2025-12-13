@@ -35,7 +35,6 @@ QuestCheckerLocale["enUS"] = {
     QUEST_LIST_FORMAT = "{WHITE}#%d - %s - %s",
 
     -- Headers
-    CHECK_HEADER = "{GREEN}=== Quest Check ===",
     LIST_HEADER = "{GREEN}=== Quest List ===",
     CONFIG_HEADER = "{GREEN}=== QuestChecker Settings ===",
     HELP_HEADER = "{GREEN}=== QuestChecker Help ===",
@@ -47,30 +46,25 @@ QuestCheckerLocale["enUS"] = {
 
     -- Progress messages
     PROGRESS_FORMAT = "{GREEN}Progress: %d/%d quests completed|r",
-    TOTAL_SUMMARY = "Total Summary:",
+    TOTAL_SUMMARY = "{YELLOW}Total Summary:",
     CHARACTER_PROGRESS = "Character Quests: %d/%d completed",
     GLOBAL_PROGRESS = "Global Quests: %d/%d completed",
     TOTAL_QUESTS_COUNT = "Total: %d quests",
 
     -- Success/error messages
-    NO_QUESTS_IN_LIST = "{ORANGE}No quests in the list. Use /qc add [ID] to add one.|r",
     NO_QUESTS_IN_NAMED_LIST = "{ORANGE}No quests in the %s list.",
     NO_CHARACTER_QUESTS = "{ORANGE}You have no character-specific quests.",
     NO_GLOBAL_QUESTS = "{ORANGE}There are no global quests.",
 
-    QUEST_ADDED = "{GREEN}Quest #%d added to the list.|r",
     QUEST_ADDED_CHARACTER = "Quest {YELLOW}%d (%s)|r added to your character quest list.",
     QUEST_ADDED_GLOBAL = "Quest %d added to global quest list.",
 
-    QUEST_ALREADY_IN_LIST = "{ORANGE}Quest #%d is already in the list.|r",
     QUEST_ALREADY_IN_CHAR_LIST = "Quest %d is already in your character quest list.",
     QUEST_ALREADY_IN_GLOBAL_LIST = "Quest %d is already in the global quest list.",
 
-    QUEST_REMOVED = "{ORANGE}Quest #%d removed from the list.|r",
-    QUEST_REMOVED_CHARACTER = "Quest %d removed from your character quest list.",
-    QUEST_REMOVED_GLOBAL = "Quest %d removed from global quest list.",
+    QUEST_REMOVED_CHARACTER = "Quest {YELLOW}%d (%s)|r removed from your character quest list.",
+    QUEST_REMOVED_GLOBAL = "Quest {YELLOW}%d (%s)|r removed from global quest list.",
 
-    QUEST_NOT_FOUND = "{RED}Quest #%d not found in the list.|r",
     QUEST_NOT_FOUND_CHARACTER = "Quest %d not found in your character quest list.",
     QUEST_NOT_FOUND_GLOBAL = "Quest %d not found in global quest list.",
 
@@ -83,7 +77,7 @@ QuestCheckerLocale["enUS"] = {
     ERROR_INVALID_SYNTAX = "{RED}Error: Invalid syntax.",
 
     QUEST_UNKNOWN = "Quest #%d",
-    
+
     -- Instructions for invalid syntax
     INSTRUCTION_ADD_QUEST = "Use: /qc add <ID> or /qc add global <ID>",
     INSTRUCTION_REMOVE_QUEST = "Use: /qc remove <ID> or /qc remove global <ID>",
@@ -95,20 +89,15 @@ QuestCheckerLocale["enUS"] = {
 
     -- Configuration
     CONFIG_DETAILS = "Show details: %s",
-    CONFIG_CHAT = "Chat output: %s",
-    CONFIG_QUESTS_COUNT = "Quests in list: %d",
     CONFIG_CHAR_QUESTS_COUNT = "Character Quests: %d",
     CONFIG_GLOBAL_QUESTS_COUNT = "Global Quests: %d",
     CONFIG_LOCALE = "Current language: %s",
     CONFIG_AVAILABLE_LOCALES = "Available languages:",
     CONFIG_COMMANDS_HEADER = "{YELLOW}Configuration commands:|r",
     CONFIG_DETAILS_CMD = "{YELLOW}/qc config details on/off|r - Enable/disable quest details",
-    CONFIG_CHAT_CMD = "{YELLOW}/qc config chat on/off|r - Enable/disable chat output",
     CONFIG_LOCALE_CMD = "{YELLOW}/qc config locale [CODE]|r - Change language (enUS, ptBR, esES)",
     CONFIG_DETAILS_ENABLED = "{GREEN}Quest details enabled.|r",
     CONFIG_DETAILS_DISABLED = "{RED}Quest details disabled.|r",
-    CONFIG_CHAT_ENABLED = "{GREEN}Chat output enabled.|r",
-    CONFIG_CHAT_DISABLED = "{RED}Chat output disabled.|r",
 
     -- Status
     STATUS_ENABLED = "{GREEN}Enabled|r",

@@ -35,7 +35,6 @@ QuestCheckerLocale["esES"] = {
     QUEST_LIST_FORMAT = "{WHITE}#%d - %s - %s",
 
     -- Encabezados
-    CHECK_HEADER = "{GREEN}=== Verificación de Misiones ===",
     LIST_HEADER = "{GREEN}=== Lista de Misiones ===",
     CONFIG_HEADER = "{GREEN}=== Ajustes de QuestChecker ===",
     HELP_HEADER = "{GREEN}=== Ayuda de QuestChecker ===",
@@ -47,30 +46,25 @@ QuestCheckerLocale["esES"] = {
 
     -- Mensajes de progreso
     PROGRESS_FORMAT = "{GREEN}Progreso: %d/%d misiones completadas|r",
-    TOTAL_SUMMARY = "Resumen Total:",
+    TOTAL_SUMMARY = "{YELLOW}Resumen Total:",
     CHARACTER_PROGRESS = "Misiones del Personaje: %d/%d completadas",
     GLOBAL_PROGRESS = "Misiones Globales: %d/%d completadas",
     TOTAL_QUESTS_COUNT = "Total: %d misiones",
 
     -- Mensajes de error/éxito
-    NO_QUESTS_IN_LIST = "{ORANGE}No hay misiones en la lista. Usa /qc add [ID] para añadir una.|r",
     NO_QUESTS_IN_NAMED_LIST = "{ORANGE}No hay misiones en la lista %s.",
     NO_CHARACTER_QUESTS = "{ORANGE}No tienes misiones específicas del personaje.",
     NO_GLOBAL_QUESTS = "{ORANGE}No hay misiones globales.",
 
-    QUEST_ADDED = "{GREEN}Misión #%d añadida a la lista.|r",
     QUEST_ADDED_CHARACTER = "Misión {YELLOW}%d (%s)|r añadida a tu lista del personaje.",
     QUEST_ADDED_GLOBAL = "Misión %d añadida a la lista global.",
 
-    QUEST_ALREADY_IN_LIST = "{ORANGE}Misión #%d ya está en la lista.|r",
     QUEST_ALREADY_IN_CHAR_LIST = "Misión %d ya está en tu lista del personaje.",
     QUEST_ALREADY_IN_GLOBAL_LIST = "Misión %d ya está en la lista global.",
 
-    QUEST_REMOVED = "{ORANGE}Misión #%d eliminada de la lista.|r",
-    QUEST_REMOVED_CHARACTER = "Misión %d eliminada de tu lista del personaje.",
-    QUEST_REMOVED_GLOBAL = "Misión %d eliminada de la lista global.",
+    QUEST_REMOVED_CHARACTER = "Misión {YELLOW}%d (%s)|r eliminada de tu lista del personaje.",
+    QUEST_REMOVED_GLOBAL = "Misión {YELLOW}%d (%s)|r eliminada de la lista global.",
 
-    QUEST_NOT_FOUND = "{RED}Misión #%d no encontrada en la lista.|r",
     QUEST_NOT_FOUND_CHARACTER = "Misión %d no encontrada en tu lista del personaje.",
     QUEST_NOT_FOUND_GLOBAL = "Misión %d no encontrada en la lista global.",
 
@@ -95,20 +89,15 @@ QuestCheckerLocale["esES"] = {
 
     -- Configuración
     CONFIG_DETAILS = "Mostrar detalles: %s",
-    CONFIG_CHAT = "Salida en chat: %s",
-    CONFIG_QUESTS_COUNT = "Misiones en lista: %d",
     CONFIG_CHAR_QUESTS_COUNT = "Misiones del Personaje: %d",
     CONFIG_GLOBAL_QUESTS_COUNT = "Misiones Globales: %d",
     CONFIG_LOCALE = "Idioma actual: %s",
     CONFIG_AVAILABLE_LOCALES = "Idiomas disponibles:",
     CONFIG_COMMANDS_HEADER = "{YELLOW}Comandos de configuración:|r",
     CONFIG_DETAILS_CMD = "{YELLOW}/qc config details on/off|r - Activa/desactiva detalles de misiones",
-    CONFIG_CHAT_CMD = "{YELLOW}/qc config chat on/off|r - Activa/desactiva salida en chat",
     CONFIG_LOCALE_CMD = "{YELLOW}/qc config locale [CODE]|r - Cambia el idioma (enUS, ptBR, esES)",
     CONFIG_DETAILS_ENABLED = "{GREEN}Detalles de misiones activados.|r",
     CONFIG_DETAILS_DISABLED = "{RED}Detalles de misiones desactivados.|r",
-    CONFIG_CHAT_ENABLED = "{GREEN}Salida en chat activada.|r",
-    CONFIG_CHAT_DISABLED = "{RED}Salida en chat desactivada.|r",
 
     -- Estado
     STATUS_ENABLED = "{GREEN}Activado|r",

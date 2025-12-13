@@ -45,7 +45,6 @@ QuestCheckerDB = QuestCheckerDB or {
 
     -- Settings
     showQuestDetails = true,
-    chatOutput = true,
     locale = GetLocale() -- Client default language
 }
 
@@ -212,11 +211,7 @@ local function ShowQuestStatus(questID)
     end
 
     -- Show in chat
-    if QuestCheckerDB.chatOutput then
-        print(message)
-    end
-
-    return message
+    print(message)
 end
 
 -- Get current character's quest list
@@ -265,7 +260,7 @@ local function CheckAllQuests()
     print("") -- Empty line for separation
     local globalCompleted, globalTotal = CheckQuests(globalQuests, L.GLOBAL_QUESTS)
 
-    print("\n" .. L.TOTAL_SUMMARY)
+    print(L.TOTAL_SUMMARY)
     print(string.format(L.CHARACTER_PROGRESS, charCompleted, charTotal))
     print(string.format(L.GLOBAL_PROGRESS, globalCompleted, globalTotal))
 end
@@ -341,7 +336,7 @@ local function RemoveCharacterQuest(questID)
     for i, existingID in ipairs(charQuests) do
         if existingID == questID then
             table.remove(charQuests, i)
-            print(string.format(L.QUEST_REMOVED_CHARACTER, questID))
+            print(string.format(L.QUEST_REMOVED_CHARACTER, questID, GetQuestName(questID)))
             return
         end
     end
@@ -362,7 +357,7 @@ local function RemoveGlobalQuest(questID)
     for i, existingID in ipairs(QuestCheckerDB.globalQuestList) do
         if existingID == questID then
             table.remove(QuestCheckerDB.globalQuestList, i)
-            print(string.format(L.QUEST_REMOVED_GLOBAL, questID))
+            print(string.format(L.QUEST_REMOVED_GLOBAL, questID, GetQuestName(questID)))
             return
         end
     end
@@ -421,7 +416,6 @@ local function ShowConfig()
 
     print(L.CONFIG_HEADER)
     print(string.format(L.CONFIG_DETAILS, QuestCheckerDB.showQuestDetails and L.STATUS_ENABLED or L.STATUS_DISABLED))
-    print(string.format(L.CONFIG_CHAT, QuestCheckerDB.chatOutput and L.STATUS_ENABLED or L.STATUS_DISABLED))
     print(string.format(L.CONFIG_CHAR_QUESTS_COUNT, #charQuests))
     print(string.format(L.CONFIG_GLOBAL_QUESTS_COUNT, #QuestCheckerDB.globalQuestList))
     print(string.format(L.CONFIG_LOCALE, QuestCheckerDB.locale))
@@ -436,7 +430,6 @@ local function ShowConfig()
 
     print(L.CONFIG_COMMANDS_HEADER)
     print(L.CONFIG_DETAILS_CMD)
-    print(L.CONFIG_CHAT_CMD)
     print(L.CONFIG_LOCALE_CMD)
 end
 
@@ -450,12 +443,6 @@ local function HandleConfigCommand(args)
     elseif command == "details off" then
         QuestCheckerDB.showQuestDetails = false
         print(L.CONFIG_DETAILS_DISABLED)
-    elseif command == "chat on" then
-        QuestCheckerDB.chatOutput = true
-        print(L.CONFIG_CHAT_ENABLED)
-    elseif command == "chat off" then
-        QuestCheckerDB.chatOutput = false
-        print(L.CONFIG_CHAT_DISABLED)
     elseif command:sub(1, 7) == "locale " then
         local locale = command:sub(8)
         SetLocale(locale)

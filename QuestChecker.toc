@@ -1,0 +1,13 @@
+## Interface: 100200
+## Title: QuestChecker
+## Notes: Verifica o status de quests específicas
+## Author: SeuNome
+## Version: 1.2.0
+## SavedVariables: QuestCheckerDB
+## OptionalDeps: Ace3
+## X-Category: Quest
+
+locales/enUS.lua
+locales/ptBR.lua
+locales/esES.lua
+QuestChecker.lua

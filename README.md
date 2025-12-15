@@ -117,7 +117,7 @@ _G.QuestChecker = {
 ## Compatibility
 
 - **WoW Version**: Retail
-- **Interface**: 11.0.0
+- **Interface**: 11.2.7
 - **Dependencies**: None - standalone addon
 - **Memory Usage**: Minimal footprint
 

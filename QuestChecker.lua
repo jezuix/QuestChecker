@@ -212,6 +212,8 @@ local function ShowQuestStatus(questID)
 
     -- Show in chat
     print(message)
+
+    return message
 end
 
 -- Get current character's quest list
@@ -534,6 +536,13 @@ local function HandleCommand(input)
         print(L.HELP_GLOBAL_REMOVE)
         print(L.HELP_CHAR_LIST)
         print(L.HELP_GLOBAL_LIST)
+        print(L.HELP_GLOBAL_CLEAR)
+        print(L.HELP_VERSION)
+    elseif command == "version" or command == "v" then
+        local version = C_AddOns.GetAddOnMetadata(addonName, "Version") or ""
+        local author = C_AddOns.GetAddOnMetadata(addonName, "Author") or ""
+        
+        print(string.format(L.ADDON_VERSION, version, author))
     else
         -- If it's a number, check only that quest
         questID = tonumber(questID)

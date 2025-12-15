@@ -1,13 +1,13 @@
-## Interface: 100200
+## Interface: 110207
 ## Title: QuestChecker
-## Notes: Verifica o status de quests específicas
+## Notes: Check the status of specific quests
 ## Author: Jezuix
-## Version: 1.2.0
+## Version: 1.0.1
 ## SavedVariables: QuestCheckerDB
 ## OptionalDeps: Ace3
 ## X-Category: Quest
 
+locales/esES.lua
 locales/enUS.lua
 locales/ptBR.lua
-locales/esES.lua
 QuestChecker.lua

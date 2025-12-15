@@ -78,7 +78,7 @@ QuestCheckerLocale["esES"] = {
 
     QUEST_UNKNOWN = "Misión #%d",
 
-    -- Instructions for invalid syntax
+    -- Instrucciones para sintaxis no válida
     INSTRUCTION_ADD_QUEST = "Use: /qc add <ID> o /qc add global <ID>",
     INSTRUCTION_REMOVE_QUEST = "Use: /qc remove <ID> o /qc remove global <ID>",
     INSTRUCTION_CLEAR_QUEST = "Use: /qc clear char o /qc clear global",
@@ -112,7 +112,7 @@ QuestCheckerLocale["esES"] = {
     HELP_ADD = "{YELLOW}/qc add [ID]|r - Añade una misión a tu lista del personaje",
     HELP_REMOVE = "{YELLOW}/qc remove [ID]|r - Elimina una misión de tu lista del personaje",
     HELP_LIST = "{YELLOW}/qc list|r - Muestra todas las misiones (personaje y global)",
-    HELP_CLEAR = "{YELLOW}/qc clear|r - Limpia la lista de misiones",
+    HELP_CLEAR = "{YELLOW}/qc clear char|r - Limpia la lista de misiones de tu lista del personaje",
     HELP_CONFIG = "{YELLOW}/qc config|r - Ajustes",
     HELP_LOCALE = "{YELLOW}/qc locale [CODE]|r - Cambia el idioma",
     HELP_HELP = "{YELLOW}/qc help|r - Muestra esta ayuda",
@@ -120,6 +120,11 @@ QuestCheckerLocale["esES"] = {
     -- Nuevas entradas de ayuda para comandos personaje/global
     HELP_GLOBAL_ADD = "{YELLOW}/qc add global <ID>|r - Añade misión a la lista global (compartida entre todos los personajes)",
     HELP_GLOBAL_REMOVE = "{YELLOW}/qc remove global <ID>|r - Elimina misión de la lista global",
+    HELP_GLOBAL_CLEAR = "{YELLOW}/qc clear global <ID>|r - Limpia la lista de misiones de la lista global",
     HELP_CHAR_LIST = "{YELLOW}/qc list char|r - Lista solo las misiones de tu personaje",
     HELP_GLOBAL_LIST = "{YELLOW}/qc list global|r - Lista solo misiones globales",
+    HELP_VERSION = "{YELLOW}/qc version|r o {YELLOW}/qc v|r - Mostrar la versión del addon",
+
+    -- Metadata
+    ADDON_VERSION = "Versión %s de QuestChecker por {ORANGE} %s|r",
 }

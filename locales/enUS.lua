@@ -112,7 +112,7 @@ QuestCheckerLocale["enUS"] = {
     HELP_ADD = "{YELLOW}/qc add [ID]|r - Add a quest to your character list",
     HELP_REMOVE = "{YELLOW}/qc remove [ID]|r - Remove a quest from your character list",
     HELP_LIST = "{YELLOW}/qc list|r - Show all quests (character and global)",
-    HELP_CLEAR = "{YELLOW}/qc clear|r - Clear quest list",
+    HELP_CLEAR = "{YELLOW}/qc clear char|r - Clear quest list from your character list",
     HELP_CONFIG = "{YELLOW}/qc config|r - Settings",
     HELP_LOCALE = "{YELLOW}/qc locale [CODE]|r - Change language",
     HELP_HELP = "{YELLOW}/qc help|r - Show this help",
@@ -120,6 +120,11 @@ QuestCheckerLocale["enUS"] = {
     -- New help entries for character/global commands
     HELP_GLOBAL_ADD = "{YELLOW}/qc add global <ID>|r - Add quest to global list (shared across all characters)",
     HELP_GLOBAL_REMOVE = "{YELLOW}/qc remove global <ID>|r - Remove quest from global list",
+    HELP_GLOBAL_CLEAR = "{YELLOW}/qc clear global <ID>|r - Clear quest from global list",
     HELP_CHAR_LIST = "{YELLOW}/qc list char|r - List only your character's quests",
     HELP_GLOBAL_LIST = "{YELLOW}/qc list global|r - List only global quests",
+    HELP_VERSION = "{YELLOW}/qc version|r or {YELLOW}/qc v|r - Show addon version",
+    
+    -- Metadata
+    ADDON_VERSION = "QuestChecker version %s by {ORANGE} %s|r",
 }
